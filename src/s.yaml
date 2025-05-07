@@ -1,0 +1,66 @@
+edition: 3.0.0
+name: mcp-fast-deploy
+access: '{{ access }}'
+
+vars:
+  region: '{{ region }}'
+  role: '{{ roleArn }}'
+
+resources:
+  mcp-helper:
+    component: fc3 
+    props:
+      region: ${vars.region}              
+      functionName: '{{ helperFunctionName }}'
+      description: 'mcp helper'
+      runtime: "python3.10"
+      code: ./mcp-helper
+      handler: index.handler
+      role: ${vars.role}
+      cpu: 1.0
+      memorySize: 2048
+      diskSize: 10240
+      logConfig: auto
+      environmentVariables:
+        PATH: /var/fc/lang/python3.10/bin:/var/fc/lang/nodejs20/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+        TZ: Asia/Shanghai
+        BUCKET_NAME: '{{ bucketName }}'
+        RUNTIME_OS: "debian10" 
+      timeout: 600
+
+  mcp-fast-deploy:
+    component: fc3 
+    props:
+      region: ${vars.region}              
+      functionName: '{{ functionName }}'
+      description: 'mcp fast deploy support npx and uvx'
+      runtime: "custom.debian11"
+      code: ./mcp-fast-deploy
+      handler: index.handler
+      role: ${vars.role}  
+      cpu: 1.0
+      memorySize: 2048
+      diskSize: 10240
+      logConfig: auto
+      environmentVariables:
+        PATH: /var/fc/lang/python3.12/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/code/python/bin
+        TZ: Asia/Shanghai
+        HELPER_FUNCTION_NAME: ${resources.mcp-helper.output.functionName}
+        PYTHONPATH: /code/python
+      timeout: 600
+      customRuntimeConfig:
+        port: 80
+        command:
+          - uvicorn
+          - main:app
+        args:  
+          - --host 
+          - 0.0.0.0 
+          - --port 
+          - "80"
+      customDomain:
+        domainName: auto
+        protocol: HTTP
+        route:
+          path: /*
+          qualifier: LATEST

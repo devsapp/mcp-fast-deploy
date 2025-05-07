@@ -1,0 +1,10 @@
+node_modules
+__pycache__
+dist
+.github
+.idea
+.vscode
+.DS_Store
+.git
+.env
+.python-version

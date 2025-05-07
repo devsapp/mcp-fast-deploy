@@ -1,0 +1,10 @@
+cryptography==41.0.5
+alibabacloud-gateway-pop==0.0.8
+alibabacloud-gateway-sls==0.3.2
+alibabacloud-credentials==1.0.2
+fastapi==0.115.12
+uvicorn==0.34.2
+jinja2==3.1.6
+python-multipart==0.0.20
+alibabacloud_darabonba_stream==0.0.2
+alibabacloud_fc20230330==4.3.0

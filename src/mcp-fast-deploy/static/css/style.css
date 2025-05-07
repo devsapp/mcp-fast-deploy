@@ -1,0 +1,63 @@
+/* 按钮样式优化 */
+.install-btn-group .btn {
+    height: 36px;  /* 高度减少 */
+    padding: 0.3rem 1.2rem;  /* 调整内边距 */
+    gap: 8px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+/* 按钮间隔调整 */
+.install-btn-group {
+    gap: 2rem !important;  /* 间隔增加到32px */
+}
+
+/* 图标尺寸优化 */
+.install-btn-group img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+/* 激活状态微调 */
+.install-btn-group .btn.active {
+    background-color: #e8f4ff;
+    border-color: #1677ff;
+    color: #1677ff;
+}
+
+/* JSON编辑器优化 */
+#jsonConfig {
+    min-height: 300px;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* 添加验证样式 */
+.is-invalid {
+    border-color: #dc3545 !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+/* 添加加载动画样式 */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: -0.125em;
+    border: 0.15em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+    margin-left: 0.5rem;
+}

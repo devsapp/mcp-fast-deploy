@@ -1,0 +1,9 @@
+alibabacloud_gateway_sls_util-0.3.1.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+alibabacloud_gateway_sls_util-0.3.1.dist-info/METADATA,sha256=oG6DrNCj0bT867YgieNYYNigErgnAMkcaeNTt3MJDTs,934
+alibabacloud_gateway_sls_util-0.3.1.dist-info/RECORD,,
+alibabacloud_gateway_sls_util-0.3.1.dist-info/WHEEL,sha256=Z4pYXqR_rTB7OWNDYFOm1qRk0RX6GFP2o8LgvP453Hk,91
+alibabacloud_gateway_sls_util-0.3.1.dist-info/top_level.txt,sha256=VOOIhHyc5g4dY2XxrimYWn5HjIxOjX-BIKwcOX25JHE,30
+alibabacloud_gateway_sls_util/__init__.py,sha256=r4xAFihOf72W9TD-lpMi6ntWSTKTP2SlzKP1ytkjRbI,22
+alibabacloud_gateway_sls_util/__pycache__/__init__.cpython-312.pyc,,
+alibabacloud_gateway_sls_util/__pycache__/client.cpython-312.pyc,,
+alibabacloud_gateway_sls_util/client.py,sha256=tdqbcLUbqWUsXHFku_hox2tdq4vw5xDWcJ-00Y7Sfos,5201

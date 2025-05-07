@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: alibabacloud_gateway_sls
+Version: 0.3.2
+Summary: Alibaba Cloud SLS Gateway Library for Python
+Home-page: https://github.com/aliyun/alibabacloud-gateway
+Author: Alibaba Cloud SDK
+Author-email: sdk-team@alibabacloud.com
+License: Apache License 2.0
+Keywords: alibabacloud,gateway,sls
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: alibabacloud-gateway-spi <1.0.0,>=0.0.2
+Requires-Dist: alibabacloud-credentials >=0.3.5
+Requires-Dist: alibabacloud-tea-util <1.0.0,>=0.3.13
+Requires-Dist: alibabacloud-openapi-util <1.0.0,>=0.2.1
+Requires-Dist: alibabacloud-darabonba-string <1.0.0,>=0.0.4
+Requires-Dist: alibabacloud-darabonba-map <1.0.0,>=0.0.1
+Requires-Dist: alibabacloud-darabonba-array <1.0.0,>=0.1.0
+Requires-Dist: alibabacloud-darabonba-encode-util <1.0.0,>=0.0.2
+Requires-Dist: alibabacloud-darabonba-signature-util <1.0.0,>=0.0.4
+Requires-Dist: alibabacloud-gateway-sls-util <1.0.0,>=0.3.1
+

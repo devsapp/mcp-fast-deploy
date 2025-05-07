@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>创建 MCP 服务</title>
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4" style="max-width: 800px;">
+        <!-- 警告提示 -->
+        <div class="alert alert-primary mb-4 py-2 border-0">
+            <i class="bi bi-info-circle me-2"></i>
+            STDIO MCP服务通过函数计算 FC 一键部署转型为 SSE 远程服务
+        </div>
+
+        <!-- 表单主体 -->
+        <form method="post" action="/api/mcp-services" class="card p-4 border-0 shadow-sm" onsubmit="return validateForm()">
+            <!-- 服务信息 -->
+            <div class="row g-3 mb-4">
+                <div class="col-12">
+                    <label class="form-label fw-semibold">服务名称</label>
+                    <input type="text" 
+                           name="name" 
+                           class="form-control form-control-sm" 
+                           placeholder="MCP服务名称"
+                           pattern="^[a-zA-Z_][a-zA-Z0-9_-]*$"
+                           title="只能包含字母、数字、- 和 _，且不能以数字开头"
+                           maxlength="32"
+                           required>
+                    <div class="form-text text-end text-muted mt-1">0/32</div>
+                </div>
+                <div class="col-12">
+                    <label class="form-label fw-semibold">服务描述</label>
+                    <textarea name="description" 
+                              class="form-control form-control-sm" 
+                              rows="3" 
+                              placeholder="描述你的MCP服务"
+                              maxlength="500"></textarea>
+                    <div class="form-text text-end text-muted mt-1">0/500</div>
+                </div>
+                <div class="col-12">
+                    <label class="form-label fw-semibold">部署地域</label>
+                    <select name="region" class="form-select form-select-sm">
+                        {% for region in regions %}
+                        <option value="{{ region.value }}">{{ region.label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- 安装方式 -->
+            <div class="mb-4">
+                <label class="form-label fw-semibold">安装方式</label>
+                <div class="install-btn-group d-flex">
+                    <button type="button" 
+                            class="btn btn-outline-primary active"
+                            data-install-method="npx"
+                            data-config-template='{
+                                "mcpServers": {
+                                    "amap-maps": {
+                                        "command": "npx",
+                                        "args": ["-y", "@amap/amap-maps-mcp-server"],
+                                        "env": {"AMAP_MAPS_API_KEY":"<YOUR_API_KEY>"}
+                                    }
+                                }
+                            }'>
+                        <img src="https://img.alicdn.com/imgextra/i1/O1CN01GmPSYO1s1Ozpp72Ym_!!6000000005706-2-tps-44-44.png">
+                        <span>npx 安装</span>
+                    </button>
+                    <button type="button" 
+                            class="btn btn-outline-primary"
+                            data-install-method="uvx"
+                            data-config-template='{
+                                "mcpServers": {
+                                    "time": {
+                                        "command": "uvx",
+                                        "args": ["mcp-server-time", "--local-timezone=Asia/Shanghai"]
+                                    }
+                                }
+                            }'>
+                        <img src="https://img.alicdn.com/imgextra/i1/O1CN01ZEEHB61yvAvEDCiZi_!!6000000006640-2-tps-54-54.png">
+                        <span>uvx 安装</span>
+                    </button>
+                </div>
+                <input type="hidden" name="install_method" value="npx">
+            </div>
+
+            <!-- JSON配置 -->
+            <div class="mb-4">
+                <label class="form-label fw-semibold d-flex justify-content-between">
+                    <span>服务配置（JSON 格式, 注意启动的一定是 stdio 传输模式）</span>
+                    <!-- <small class="text-muted fw-normal">支持智能语法检查</small> -->
+                </label>
+                <textarea 
+                    id="jsonConfig" 
+                    name="config" 
+                    class="form-control" 
+                    placeholder='{
+    "mcpServers": {
+        "amap-maps": {
+            "command": "npx",
+            "args": ["-y", "@amap/amap-maps-mcp-server"],
+            "env": {"AMAP_MAPS_API_KEY":"<YOUR_API_KEY>"}
+        }
+    }
+}'></textarea>
+                <div id="jsonError" class="invalid-feedback"></div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <button type="submit" class="btn btn-primary flex-grow-1 py-2" id="submitBtn">
+                <span class="submit-text">提交部署</span>
+                <span class="spinner-border spinner-border-sm" style="display: none;"></span>
+            </button>
+
+            <div id="resultContainer" class="mt-4" style="display: none;">
+                <div class="alert alert-success">
+                    <h5>部署成功！</h5>
+                    <pre id="resultContent"></pre>
+                    <div id="links" class="mt-2"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
