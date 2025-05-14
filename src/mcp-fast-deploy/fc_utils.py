@@ -118,7 +118,7 @@ async def handler(cmd, envs, name, desc):
             )
 
     if cmd.startswith("uvx"):
-        body["environmentVariables"].update({"PYTHONPATH": "/code/python"})
+        body["environmentVariables"].update({"PYTHONPATH": "/code:/code/python"})
         if REGION.startswith("cn-") and REGION != "cn-hongkong":
             body["environmentVariables"].update(
                 {
