@@ -103,15 +103,11 @@ async def handler(cmd, envs, name, desc):
         },
         "sessionAffinity": "MCP_SSE",
         "environmentVariables": {
-            "PATH": "/var/fc/lang/python3.10/bin:/var/fc/lang/nodejs20/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin:/code/python/bin",
+            "PATH": "/var/fc/lang/python3.10/bin:/var/fc/lang/nodejs20/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin:/opt/google/chrome:/code/python/bin",
             "FONTCONFIG_FILE": "/opt/etc/fonts.conf",
-            "PUPPETEER_EXECUTABLE_PATH": "/opt/google/chrome/chrome",
         },
     }
     if cmd.startswith("npx"):
-        body["environmentVariables"].update(
-            {"NODE_PATH": "/opt/nodejs/node_modules:/var/fc/lang/nodejs20/node_modules"}
-        )
         if REGION.startswith("cn-") and REGION != "cn-hongkong":
             body["environmentVariables"].update(
                 {"npm_config_registry": "https://registry.npmmirror.com"}
