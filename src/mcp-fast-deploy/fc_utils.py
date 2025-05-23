@@ -81,13 +81,13 @@ async def handler(cmd, envs, name, desc):
     )
     # body params
     function_name = f"{name}_MCP_{uuid.uuid4()}"
-    layer = f"acs:fc:{REGION}:1730431480417716:layers/MCP-Runtime-V1/versions/3"
+    layer = f"acs:fc:{REGION}:1730431480417716:layers/MCP-Runtime-V2/versions/1"
     body = {
         "functionName": function_name,
         "description": desc,
         "cpu": 1,
         "memorySize": 2048,
-        "runtime": "custom.debian10",
+        "runtime": "custom.debian12",
         "diskSize": 10240,
         "handler": "index.handler",
         "code": {
@@ -103,7 +103,7 @@ async def handler(cmd, envs, name, desc):
         },
         "sessionAffinity": "MCP_SSE",
         "environmentVariables": {
-            "PATH": "/var/fc/lang/python3.10/bin:/var/fc/lang/nodejs20/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin:/opt/google/chrome:/code/python/bin",
+            "PATH": "/var/fc/lang/python3.13/bin:/var/fc/lang/nodejs22/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin:/opt/google/chrome:/code/python/bin",
             "FONTCONFIG_FILE": "/opt/etc/fonts.conf",
         },
     }

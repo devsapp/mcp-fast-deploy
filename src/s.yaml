@@ -13,7 +13,12 @@ resources:
       region: ${vars.region}              
       functionName: '{{ helperFunctionName }}'
       description: 'mcp helper'
-      runtime: "python3.10"
+      runtime: "custom.debian12"
+      customRuntimeConfig:
+        port: 8000
+        command:
+          - python3
+          - index.py
       code: ./mcp-helper
       handler: index.handler
       role: ${vars.role}
@@ -22,10 +27,10 @@ resources:
       diskSize: 10240
       logConfig: auto
       environmentVariables:
-        PATH: /var/fc/lang/python3.10/bin:/var/fc/lang/nodejs20/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+        PATH: /var/fc/lang/python3.13/bin:/var/fc/lang/nodejs22/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin:/opt/google/chrome:/code/python/bin
         TZ: Asia/Shanghai
         BUCKET_NAME: '{{ bucketName }}'
-        RUNTIME_OS: "debian10" 
+        RUNTIME_OS: "debian12" 
       timeout: 600
 
   mcp-fast-deploy:

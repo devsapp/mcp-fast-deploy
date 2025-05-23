@@ -13,8 +13,7 @@ REGION = os.environ["FC_REGION"]
 RUNTIME_OS = os.environ["RUNTIME_OS"]
 
 
-def handler(event, context):
-    rid = context.request_id
+def handler(event, rid):
     working_dir = os.path.join("/tmp", rid)
     os.makedirs(working_dir, exist_ok=True)
 
@@ -57,7 +56,7 @@ def handler(event, context):
             "start_cmd": [
                 "supergateway",
                 "--stdio",
-                stdio_cmd,
+                f'"{stdio_cmd}"',
                 "--port",
                 "8080",
                 "--ssePath",

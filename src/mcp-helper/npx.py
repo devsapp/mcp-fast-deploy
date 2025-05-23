@@ -13,10 +13,9 @@ RUNTIME_OS = os.environ["RUNTIME_OS"]
 LOGGER = logging.getLogger()
 
 
-def handler(event, context):
+def handler(event, rid):
     LOGGER.info(event)
 
-    rid = context.request_id
     working_dir = os.path.join("/tmp", rid)
     os.makedirs(working_dir, exist_ok=True)
     with open(os.path.join(working_dir, "package.json"), "w", encoding="utf-8") as file:
@@ -56,7 +55,7 @@ def handler(event, context):
             "start_cmd": [
                 "supergateway",
                 "--stdio",
-                stdio_cmd,
+                f'"{stdio_cmd}"',
                 "--port",
                 "8080",
                 "--ssePath",

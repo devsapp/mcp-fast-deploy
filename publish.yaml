@@ -3,7 +3,7 @@ Type: Project
 Name: start-mcp-fast-deploy
 Provider:
   - 阿里云
-Version: 0.0.4
+Version: 0.0.5
 Description: STDIO MCP服务通过函数计算 FC 一键部署转型为 SSE 远程服务
 Organization: 阿里云函数计算（FC）
 Effective: Public
